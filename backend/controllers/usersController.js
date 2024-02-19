@@ -81,7 +81,7 @@ const generateToken = (idUsuario) => {
 
 // Mostrar los datos del usuario
 const datosUser = asyncHandler( async(req, res) => {
-    res.status(200).json({message: 'Mis datos de usuario.'})
+    res.status(200).json(req.user)
 })
 
 module.exports = {
