@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 
 // Utilizamos el enrutador de productos para manejar las rutas que comienzan con /api/productos 
 app.use('/api/productos', require('./routes/productosRoutes'))
+app.use('/api/users', require('./routes/usersRoutes'))
 
 // Utilizamos el middleware errorHandler para manjear errores en la aplicacion
 app.use(errorHandler)

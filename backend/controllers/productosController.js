@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Producto = require('../models/productoModel')
-const { default: mongoose } = require('mongoose')
+//const { default: mongoose } = require('mongoose')
 
 // Definimos las funciones que se van a ejecutar al mandar llamar una ruta.
 

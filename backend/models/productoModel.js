@@ -2,6 +2,14 @@ const mongoose = require('mongoose')
 
 //
 const productoSchema = mongoose.Schema({
+
+// Campo para almacenar la referencia al usuario asociado.
+    user:{
+// Tipo de dato: Object Id de MongoDB
+        type: mongoose.Schema.Types.ObjectId,
+        required: true, // campo obligatorio
+        ref: 'User' // Referencia al modelo User de la base de datos.
+    },
 // colocamos cada uno de los campos que queremos que tenga nuestra coleccion.
 
     producto:{
