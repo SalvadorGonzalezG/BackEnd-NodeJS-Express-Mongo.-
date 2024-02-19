@@ -47,7 +47,26 @@ const registrarUser = asyncHandler(async (req, res) => {
 
 // Usuario realizando inicio de sesión
 const loginUser =asyncHandler( async(req, res) => {
-    res.status(200).json({message: 'El usuario a iniciado sesión'})
+    const {email, password} = req.body
+    if(!email || !password){
+        res.status(400)
+        throw new Error('Faltan datos porfavor verificalos.')
+    }
+
+// verificar si el usuario existe
+    const user = await User.findOne({email})
+// Si el usuario y el password con el hash son iguales
+    if(user && (await bcrypt.compare(password, user.password))){
+        res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            admin: user.esAdmin
+        })
+    } else {
+        res.status(400)
+        throw new Error('Tu contraseña o @correo son INCORRECTOS.')
+    }
 })
 
 // Mostrar los datos del usuario
