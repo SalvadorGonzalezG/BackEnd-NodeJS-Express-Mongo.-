@@ -36,7 +36,8 @@ const registrarUser = asyncHandler(async (req, res) => {
                 id: user._id,
                 name: user.name,
                 email: user.email,
-                admin: user.esAdmin
+                admin: user.esAdmin,
+                
             })
         } else {
             res.status(400)
@@ -61,13 +62,22 @@ const loginUser =asyncHandler( async(req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            admin: user.esAdmin
+            admin: user.esAdmin,
+            token: generateToken(user._id)
+            
         })
     } else {
         res.status(400)
         throw new Error('Tu contraseña o @correo son INCORRECTOS.')
     }
 })
+// Generamos el jsonwebtoker
+const generateToken = (idUsuario) => {
+    // 
+    return jwt.sign({idUsuario}, process.env.JWT_SECRET, {
+        expiresIn: '1d'
+    })
+}
 
 // Mostrar los datos del usuario
 const datosUser = asyncHandler( async(req, res) => {
