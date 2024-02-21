@@ -3,12 +3,14 @@ const colors = require('colors')
 const dotenv = require("dotenv").config() // metodo para poder acceder a las variables de entorno
 const {errorHandler} = require("./middleware/errorMiddleware") // Manejador de errores en la app.
 const connectDB = require('./config/db')
+const cors = require('cors')
 // Asignamos el numero del puerto especificado en las env
 const port = process.env.PORT || 5000
 
 // funcion que conectara con la base de datos!
 connectDB()
 const app = express()
+app.use(cors())
 
 // nota: este middleware Analiza el cuerpo de las solicitudes entrantes en formtato json este es convertido en objetos de JS para que sean accesibles atravez de req.body.
 app.use(express.json())
