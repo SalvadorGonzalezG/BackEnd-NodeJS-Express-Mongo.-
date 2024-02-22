@@ -66,7 +66,7 @@ const deleteProducto = asyncHandler(async (req, res) => {
         throw new Error("Acceso no autorizado")
     }else{
     await Producto.deleteOne(producto)
-    res.status(200).json(`El producto con ID: ${req.params.id} a sido eliminado`)
+    res.status(200).json({ id: req.params.id })
     }
     /*const deleted = await Producto.findByIdAndDelete(req.params.id, {new: true})
     res.status(200).json(deleted)*/
